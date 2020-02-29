@@ -145,11 +145,11 @@ var status_names* {.importc: "janet_status_names", jantype.}: array[16, cstring]
 var type_names* {.importc: "janet_type_names", jantype.}: array[16, cstring]
 
 when JANET_NANBOX_64 == true:
-    include janet_nan64_head
+    include janet/jnan64head
 elif JANET_NANBOX_32 == true:
-    include janet_nan32_head
+    include janet/jnan32head
 else:
-    include janet_generic_head
+    include janet/jjanetgenerichead
 
 type
     Abstract* {.importc: "JanetAbstract", jantype.} = distinct pointer # TODO double check this isn't a void
@@ -325,7 +325,7 @@ type
 const
     STACKFRAME_SIZEOF* = (pointer.sizeof * 2) + (int32.sizeof * 3)
 
-include janet_enum
+include janet/jenum
 
 const
     JANET_COUNT_TYPES*     = (ord(JANET_POINTER) + 1)
@@ -356,11 +356,11 @@ const
 #include janet_nonc
 
 when JANET_NANBOX_64 == true:
-    include janet_nan64_tail
+    include janet/jnan64tail
 elif JANET_NANBOX_32 == true:
-    include janet_nan32_tail
+    include janet/jnan32tail
 else:
-    include janet_generic_tail
+    include janet/jgenerictail
 
 proc checkint*(x: Janet): cint {.importc: "janet_checkint".}
 proc checkint64*(x: Janet): cint {.importc: "janet_checkint64".}

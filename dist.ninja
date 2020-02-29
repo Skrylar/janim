@@ -1,0 +1,4 @@
+rule m4
+    command = m4 -P $in > $out
+
+build janet/jenum.nim: m4 enum.m4
