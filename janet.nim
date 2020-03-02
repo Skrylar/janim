@@ -624,13 +624,13 @@ proc janet_symbol(str: ptr uint8; len: int32): Symbol {.importc: "janet_symbol".
 proc janet_csymbol(str: cstring): Symbol {.importc: "janet_csymbol".}
 proc janet_symbol_gen(): Symbol {.importc: "janet_symbol_gen".}
 
-proc new*(_: typedesc[Tuple]; str: ptr uint8; len: cint): Symbol =
+proc new*(_: typedesc[Symbol]; str: ptr uint8; len: cint): Symbol =
     return janet_symbol(str, len.int32)
 
-proc new*(_: typedesc[Tuple]; str: cstring): Symbol =
+proc new*(_: typedesc[Symbol]; str: cstring): Symbol =
     return janet_csymbol(str)
 
-proc new*(_: typedesc[Tuple]): Symbol =
+proc new*(_: typedesc[Symbol]): Symbol =
     return janet_symbol_gen()
 
 #proc symbolv*(str: todo; len: cint): todo =
